@@ -3,8 +3,41 @@ from node import Node
 
 # Implement your Queue class here
 class Queue:
-    # Delete the following line and implement your Queue class
-    pass
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    def enqueue(self, value):
+        new_node = Node(value)
+        if self.rear is None:
+            self.front = new_node
+            self.rear = new_node
+            return
+
+        self.rear.next = new_node
+        self.rear = new_node
+
+    def dequeue(self):
+        if self.front is None:
+            return None
+
+        value = self.front.value
+        self.front = self.front.next
+        if self.front is None:
+            self.rear = None
+        return value
+
+    def peek(self):
+        if self.front is None:
+            return None
+
+        return self.front.value
+
+    def print_queue(self):
+        current = self.front
+        while current is not None:
+            print(current.value)
+            current = current.next
     
 
 
